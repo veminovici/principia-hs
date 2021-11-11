@@ -1,6 +1,7 @@
 module Main where
 
-import Lib
+import State
+import System.IO (putStrLn)
 
 main :: IO ()
-main = someFunc
+main = putStrLn "Principia Haskell"
