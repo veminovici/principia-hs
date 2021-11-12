@@ -1,4 +1,4 @@
-# Simplee::Principia::Haskell
+# !["Haskell](./assets/images/haskell.png "Haskell") Simplee::Principia::Haskell
 
 ## Build & Run
 ```
