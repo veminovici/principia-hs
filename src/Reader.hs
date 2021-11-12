@@ -11,14 +11,14 @@ instance Applicative (Reader c) where
     (Reader cf) <*> (Reader ca) = Reader (\c -> 
         let f = cf c
             a = ca c
-            in f a)
+        in f a)
 
 instance Monad (Reader c) where
     return = pure
     (Reader ca) >>= f = Reader (\c ->
         let a = ca c
             (Reader cb) = f a
-            in cb c)
+        in cb c)
 
 -- | Creates a reader that returns the configuration
 ask :: Reader c c
@@ -30,4 +30,5 @@ asks = Reader
 
 local :: (c -> c') -> Reader c' a -> Reader c a
 local f (Reader cc) = Reader (\c ->
-    let c' = f c in cc c')
+    let c' = f c 
+    in cc c')
