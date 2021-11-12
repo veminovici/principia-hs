@@ -13,6 +13,13 @@ stack run
 *State* module implements the *Functor*, *Applicative*, and *Monad* for the *State* type as well as some utility functions:
 
 ```haskell
+-- | A state is a function from a state to a tuple which contains the new state and returned value.
+newtype State s a = State { runState :: s -> (s, a) }
+
+instance Functor (State s) where ...
+instance Applicative (State s) where ...
+instance Monad (State s) where ...
+
 -- | State workflow which returns the internal state.
 get :: State s s
 
@@ -62,6 +69,13 @@ let (count, res) = runWorkflow 0 $ appendReverseWithCount xs ys;
 *Reader* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
 
 ```haskell
+-- | Reader is a function that takes a configuration as input and returns a value.
+newtype Reader c a = Reader { runReader :: c -> a }
+
+instance Functor (Reader c) where ...
+instance Applicative (Reader c) where ...
+instance Monad (Reader c) where ...
+
 -- | Creates a Reader workflow which returns the configuration
 ask :: Reader c c
 
@@ -79,6 +93,13 @@ local :: (c -> c') -> Reader c' a -> Reader c a
 *Writer* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
 
 ```haskell
+-- | Writer is tuple where the first element is an accumulator and the second one is a returned value.
+newtype Writer log a = Writer { runWriter :: (log, a) }
+
+instance Functor (Writer log) where ...
+instance Monoid log => Applicative (Writer log) where ...
+instance Monoid log => Monad (Writer log) where ...
+
 -- | Appends to the log.
 appendLog :: Monoid log => log -> Writer log a -> Writer log a
 
