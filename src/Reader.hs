@@ -29,6 +29,4 @@ asks :: (c -> a) -> Reader c a
 asks = Reader
 
 local :: (c -> c') -> Reader c' a -> Reader c a
-local f (Reader cc) = Reader (\c ->
-    let c' = f c 
-    in cc c')
+local f (Reader cc) = Reader (cc . f)
