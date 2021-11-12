@@ -37,6 +37,9 @@ let xs, ys = [1..5], [1..10];
 let (count, res) = runWorkflow 0 $ appendReverseWithCount xs ys;
 ```
 
+## Reader Monad
+[This](https://github.com/veminovici/principia-hs/blob/master/src/Reader.hs) is my implementation for the *Reader monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-19-deriving-reader-monad.html).
+*Reader* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type.
 
 ## About this Code
 

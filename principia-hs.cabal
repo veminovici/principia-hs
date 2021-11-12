@@ -25,6 +25,7 @@ source-repository head
 
 library
   exposed-modules:
+      Reader
       State
   other-modules:
       Paths_principia_hs
