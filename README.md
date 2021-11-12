@@ -6,6 +6,8 @@ stack build
 stack run
 ```
 
+![Alt text](./assets/images/srw_monads.png "a title")
+
 ## State Monad
 [This](https://github.com/veminovici/principia-hs/blob/master/src/State.hs) is my implementation for the *State monad*, inspired by this [blog](https://williamyaoh.com/posts/2020-07-12-deriving-state-monad.html).
 *State* module implements the *Functor*, *Applicative*, and *Monad* for the *State* type as well as some utility functions:
