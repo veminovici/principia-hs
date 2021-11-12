@@ -1,7 +1,8 @@
 module MaybeT where
 
 import Control.Applicative ( Alternative, empty, (<|>))
-import Control.Monad ( MonadPlus(..) )
+import Control.Monad ( MonadPlus(..), liftM, guard)
+import Control.Monad.Trans ( MonadTrans(..) )
 
 newtype MaybeT m a = MaybeT { runMaybeT :: m (Maybe a) }
 
@@ -37,3 +38,6 @@ instance Monad m => Alternative (MaybeT m) where
 instance Monad m => MonadPlus (MaybeT m) where 
     mzero = empty
     mplus = (<|>)
+
+instance MonadTrans MaybeT where
+    lift = MaybeT . fmap Just

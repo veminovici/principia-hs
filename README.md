@@ -62,7 +62,8 @@ let xs, ys = [1..5], [1..10];
 
 -- Build the workflow (appendReverseWithCount) and then run it
 -- starting with the initial state set to 0.
-let (count, res) = runWorkflow 0 $ appendReverseWithCount xs ys;
+let (count, res) = let s = appendReverseWithCount xs ys in runState s 0;
+-- count=3 and res=[5,4,3,2,1,10,9,8,7,6,5,4,3,2,1]
 ```
 
 ## Reader Monad
@@ -136,6 +137,35 @@ instance Monad m => Monad (MaybeT m) where ...
 
 instance Monad m => Alternative (MaybeT m) where ...
 instance Monad m => MonadPlus (MaybeT m) where ...
+instance MonadTrans MaybeT where ...
+```
+
+Below you can see an example how it can be used:
+
+```haskell
+import Control.Monad(guard, msum)
+import Control.Monad.Trans ( MonadTrans(..) )
+import MaybeT
+
+isValid :: String -> Bool
+isValid s = length s >= 3
+
+getPassphrase :: MaybeT IO String
+getPassphrase = do 
+    s <- lift getLine
+    guard (isValid s) -- Alternative provides guard.
+    return s
+
+askPassphrase :: MaybeT IO ()
+askPassphrase = do 
+    lift $ putStrLn "Insert your new passphrase (3 chars at least):"
+    value <- getPassphrase
+    lift $ putStrLn "Storing in database..."
+
+main :: IO ()
+main = do
+    putStrLn "MaybeT transformer";
+    runMaybeT askPassphrase
 ```
 
 
