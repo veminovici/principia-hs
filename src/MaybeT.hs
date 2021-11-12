@@ -1,5 +1,8 @@
 module MaybeT where
 
+import Control.Applicative ( Alternative, empty, (<|>))
+import Control.Monad ( MonadPlus(..) )
+
 newtype MaybeT m a = MaybeT { runMaybeT :: m (Maybe a) }
 
 instance Monad m => Functor (MaybeT m) where
@@ -23,3 +26,14 @@ instance Monad m => Monad (MaybeT m) where
         case maybe_value of
             Nothing -> return Nothing
             Just value -> runMaybeT $ f value
+
+instance Monad m => Alternative (MaybeT m) where
+    empty = MaybeT $ return Nothing
+    x <|> y = MaybeT $ do
+        maybe_x <- runMaybeT x
+        maybe_y <- runMaybeT y
+        return (maybe_x <|> maybe_y)
+
+instance Monad m => MonadPlus (MaybeT m) where 
+    mzero = empty
+    mplus = (<|>)

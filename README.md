@@ -125,7 +125,7 @@ listen :: Writer log a -> Writer log (a, log)
 ![MaybeT trasformer](./assets/images/maybet.png "MaybeT trasformer")
 
 [This](https://github.com/veminovici/principia-hs/blob/master/src/maybet.hs) is my implementation for the *Maybet transformer*. It is inspired by this [wiki](https://en.wikibooks.org/wiki/Haskell/Monad_transformers).
-*MaybeT* modely implements the *Functor*, *Applicative*, and *Monad* for the *MaybeT* type:
+*MaybeT* modely implements the *Functor*, *Applicative*, and *Monad* for the *MaybeT* type. Also some convenient classes are also implemented: *Alternative* and *ModanPlus* [(see more)](https://en.m.wikibooks.org/wiki/Haskell/Alternative_and_MonadPlus).
 
 ```haskell
 newtype MaybeT m a = MaybeT { runMaybeT :: m (Maybe a) }
@@ -133,6 +133,9 @@ newtype MaybeT m a = MaybeT { runMaybeT :: m (Maybe a) }
 instance Monad m => Functor (MaybeT m) where ...
 instance Monad m => Applicative (MaybeT m) where ...
 instance Monad m => Monad (MaybeT m) where ...
+
+instance Monad m => Alternative (MaybeT m) where ...
+instance Monad m => MonadPlus (MaybeT m) where ...
 ```
 
 
