@@ -1,8 +1,26 @@
 # Simplee::Principia::Haskell
 
+## Build & Run
+```
+stack build
+stack run
+```
+
 ## State Monad
 [This](https://github.com/veminovici/principia-hs/blob/master/src/State.hs) is my implementation for the *State monad*, inspired by this [blog](https://williamyaoh.com/posts/2020-07-12-deriving-state-monad.html).
-*State* module implements the *Functor*, *Applicative*, and *Monad* for the *State* type. 
+*State* module implements the *Functor*, *Applicative*, and *Monad* for the *State* type as well as some utility functions:
+
+```haskell
+-- | State workflow which returns the internal state.
+get :: State s s
+
+-- | State workflow which sets the internal state.
+put :: s -> State s ()
+
+-- | State workflow which updates the internal state to a value
+-- returned by a given function.
+modify :: (s -> s) -> State s () 
+```
 
 Below you can see an example how it can be used: in this case we have a function that also increases the number of calls.
 
@@ -39,7 +57,20 @@ let (count, res) = runWorkflow 0 $ appendReverseWithCount xs ys;
 
 ## Reader Monad
 [This](https://github.com/veminovici/principia-hs/blob/master/src/Reader.hs) is my implementation for the *Reader monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-19-deriving-reader-monad.html).
-*Reader* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type.
+*Reader* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
+
+```haskell
+-- | Creates a Reader workflow which returns the configuration
+ask :: Reader c c
+
+-- | Creates a Reader workflow from a function.
+asks :: (c -> a) -> Reader c a
+
+-- | Helps running a workflow using a different config (e.g. local configuration)
+-- and then return to the original configuration. c' is the local configuration
+-- and c is the original configuration.
+local :: (c -> c') -> Reader c' a -> Reader c a
+```
 
 ## About this Code
 
