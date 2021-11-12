@@ -72,6 +72,25 @@ asks :: (c -> a) -> Reader c a
 local :: (c -> c') -> Reader c' a -> Reader c a
 ```
 
+## Writer Monad
+[This](https://github.com/veminovici/principia-hs/blob/master/src/Writer.hs) is my implementation for the *Writer monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-26-deriving-writer-monad.html).
+*Writer* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
+
+```haskell
+-- | Appends to the log.
+appendLog :: Monoid log => log -> Writer log a -> Writer log a
+
+-- | Sets the internal log to a given value
+tell :: log -> Writer log ()
+
+-- | Modified the internal log.
+censor :: (log -> log) -> Writer log a -> Writer log a
+
+-- | Returns the current log along with the given value.
+listen :: Writer log a -> Writer log (a, log)
+```
+
+
 ## About this Code
 
 > You can contact me at veminovici@hotmail.com. Code designed and written in Päädu, on the beautiful island of [**Saaremaa**](https://goo.gl/maps/DmB9ewY2R3sPGFnTA), Estonia.

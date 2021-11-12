@@ -27,6 +27,7 @@ library:
   exposed-modules:
     - Reader
     - State
+    - Writer
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 

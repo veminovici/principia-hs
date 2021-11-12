@@ -27,6 +27,7 @@ library
   exposed-modules:
       Reader
       State
+      Writer
   other-modules:
       Paths_principia_hs
   hs-source-dirs:
