@@ -1,4 +1,5 @@
-# !["Haskell](./assets/images/haskell.png "Haskell") Simplee::Principia::Haskell
+!["Haskell](./assets/images/haskell.png "Haskell") 
+# Simplee::Principia::Haskell
 
 ## Build & Run
 ```
@@ -6,9 +7,7 @@ stack build
 stack run
 ```
 
-## State Monad 
-
-![State monad](./assets/images/state.png "State monad")
+## ![State monad](./assets/images/state.png "State monad")
 
 [This](https://github.com/veminovici/principia-hs/blob/master/src/State.hs) is my implementation for the *State monad*, inspired by this [blog](https://williamyaoh.com/posts/2020-07-12-deriving-state-monad.html).
 *State* module implements the *Functor*, *Applicative*, and *Monad* for the *State* type as well as some utility functions:
@@ -66,9 +65,7 @@ let (count, res) = let s = appendReverseWithCount xs ys in runState s 0;
 -- count=3 and res=[5,4,3,2,1,10,9,8,7,6,5,4,3,2,1]
 ```
 
-## Reader Monad
-
-![Reader monad](./assets/images/reader.png "Reader monad")
+## ![Reader monad](./assets/images/reader.png "Reader monad")
 
 [This](https://github.com/veminovici/principia-hs/blob/master/src/Reader.hs) is my implementation for the *Reader monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-19-deriving-reader-monad.html).
 *Reader* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
@@ -93,9 +90,7 @@ asks :: (c -> a) -> Reader c a
 local :: (c -> c') -> Reader c' a -> Reader c a
 ```
 
-## Writer Monad
-
-![Writer monad](./assets/images/writer.png "Writer monad")
+## ![Writer monad](./assets/images/writer.png "Writer monad")
 
 [This](https://github.com/veminovici/principia-hs/blob/master/src/Writer.hs) is my implementation for the *Writer monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-26-deriving-writer-monad.html).
 *Writer* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
@@ -121,11 +116,9 @@ censor :: (log -> log) -> Writer log a -> Writer log a
 listen :: Writer log a -> Writer log (a, log)
 ```
 
-## MaybeT Transformer
+## ![MaybeT trasformer](./assets/images/maybet.png "MaybeT trasformer")
 
-![MaybeT trasformer](./assets/images/maybet.png "MaybeT trasformer")
-
-[This](https://github.com/veminovici/principia-hs/blob/master/src/maybet.hs) is my implementation for the *Maybet transformer*. It is inspired by this [wiki](https://en.wikibooks.org/wiki/Haskell/Monad_transformers).
+[This](https://github.com/veminovici/principia-hs/blob/master/src/MaybeT.hs) is my implementation for the *Maybet transformer*. It is inspired by this [wiki](https://en.wikibooks.org/wiki/Haskell/Monad_transformers).
 *MaybeT* modely implements the *Functor*, *Applicative*, and *Monad* for the *MaybeT* type. Also some convenient classes are also implemented: *Alternative* and *ModanPlus* [(see more)](https://en.m.wikibooks.org/wiki/Haskell/Alternative_and_MonadPlus).
 
 ```haskell
@@ -168,6 +161,16 @@ main = do
     runMaybeT askPassphrase
 ```
 
+## ![Lens](./assets/images/lpie.png "Lens")
+
+[This](https://github.com/veminovici/principia-hs/blob/master/src/Isomorphism.hs) is my implementation for the *Lens*, *Isomorphism*, and *Epimorphism*. 
+It is inspired by this [blog](https://xyncro.tech/aether/guides/lenses.html).
+
+```haskell
+data Lens a b = Lens (a -> b) (b -> a -> a)
+data Isomorphism a b = Iso (a -> b) (b -> a)
+data Epimorphism a b = Epi (a -> Maybe b) (b -> a)
+```
 
 ## About this Code
 
