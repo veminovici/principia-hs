@@ -6,9 +6,10 @@ stack build
 stack run
 ```
 
-![Alt text](./assets/images/srw_monads.png "a title")
+## State Monad 
 
-## State Monad
+![State monad](./assets/images/state.png "State monad")
+
 [This](https://github.com/veminovici/principia-hs/blob/master/src/State.hs) is my implementation for the *State monad*, inspired by this [blog](https://williamyaoh.com/posts/2020-07-12-deriving-state-monad.html).
 *State* module implements the *Functor*, *Applicative*, and *Monad* for the *State* type as well as some utility functions:
 
@@ -65,6 +66,9 @@ let (count, res) = runWorkflow 0 $ appendReverseWithCount xs ys;
 ```
 
 ## Reader Monad
+
+![Reader monad](./assets/images/reader.png "Reader monad")
+
 [This](https://github.com/veminovici/principia-hs/blob/master/src/Reader.hs) is my implementation for the *Reader monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-19-deriving-reader-monad.html).
 *Reader* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
 
@@ -89,6 +93,9 @@ local :: (c -> c') -> Reader c' a -> Reader c a
 ```
 
 ## Writer Monad
+
+![Writer monad](./assets/images/writer.png "Writer monad")
+
 [This](https://github.com/veminovici/principia-hs/blob/master/src/Writer.hs) is my implementation for the *Writer monad*. It is inspired by this [blog](https://williamyaoh.com/posts/2020-07-26-deriving-writer-monad.html).
 *Writer* module implements the *Functor*, *Applicative*, and *Monad* for the *Reader* type as well as some utility functions:
 
@@ -112,6 +119,10 @@ censor :: (log -> log) -> Writer log a -> Writer log a
 -- | Returns the current log along with the given value.
 listen :: Writer log a -> Writer log (a, log)
 ```
+
+## MaybeT Transformer
+
+![MaybeT trasformer](./assets/images/maybet.png "MaybeT trasformer")
 
 
 ## About this Code

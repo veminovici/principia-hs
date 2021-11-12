@@ -25,6 +25,7 @@ dependencies:
 library:
   source-dirs: src
   exposed-modules:
+    - MaybeT
     - Reader
     - State
     - Writer
