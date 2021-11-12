@@ -1,0 +1,16 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 673.52197265625 132.30715942382812" width="1347.0439453125" height="264.61431884765625">
+  <!-- svg-source:excalidraw -->
+  
+  <defs>
+    <style>
+      @font-face {
+        font-family: "Virgil";
+        src: url("https://excalidraw.com/Virgil.woff2");
+      }
+      @font-face {
+        font-family: "Cascadia";
+        src: url("https://excalidraw.com/Cascadia.woff2");
+      }
+    </style>
+  </defs>
+  <g transform="translate(10 12.39801025390625) rotate(0 51.5 12.5)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr">State s a</text></g><g transform="translate(11.8193359375 53.90936279296875) rotate(0 166 12.5)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr">State { runState :: s -&gt; (s, a) }</text></g><g transform="translate(15.91302490234375 97.30715942382812) rotate(0 261 12.5)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#000000" text-anchor="start" style="white-space: pre;" direction="ltr">(&gt;&gt;=) :: State s a -&gt; (a - State s b) -&gt; State s b </text></g><g transform="translate(604.809326171875 10) rotate(0 23 12.5)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#364fc7" text-anchor="start" style="white-space: pre;" direction="ltr">Type</text></g><g transform="translate(541.7669677734375 51.36663818359375) rotate(0 58 12.5)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#364fc7" text-anchor="start" style="white-space: pre;" direction="ltr">Constructor</text></g><g transform="translate(553.52197265625 95.83477783203125) rotate(0 55 12.5)"><text x="0" y="18" font-family="Virgil, Segoe UI Emoji" font-size="20px" fill="#364fc7" text-anchor="start" style="white-space: pre;" direction="ltr">Monad Bind</text></g></svg>
