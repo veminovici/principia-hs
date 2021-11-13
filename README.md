@@ -231,6 +231,10 @@ goUp (t, RightCrumb n l : bs) = (BNode n l t, bs)
 -- the collection of the crumbs to subtree's parent node. The last crumb
 -- points to the parent node and the other sub-tree.
 type Zipper a = (BTree a, Breadcrumbs a)
+
+-- | For a list, a zipper is just a way to split the original list into to sublists:
+-- the prefix and the sufix lists.
+type ListZipper a = ([a], [a])
 ```
 
 

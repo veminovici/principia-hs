@@ -31,3 +31,4 @@ goUp (t, RightCrumb n l : bs) = (BNode n l t, bs)
 
 
 type Zipper a = (BTree a, Breadcrumbs a)
+type ListZipper a = ([a], [a])
