@@ -195,6 +195,43 @@ data Epimorphism a b = Epi (a -> Maybe b) (b -> a)
 
 ## ![Zippers](./assets/images/zippers.png "Zippers")
 [Zippers](https://github.com/veminovici/principia-hs/blob/master/src/Zippers.hs) are a mechanism to navigate in a tree/list and focus on a specific node/item.
+This code is inspired by this [wiki](http://learnyouahaskell.com/zippers).
+
+Let's assume that we have a binary tree, where each node has a left and rght subtree, than we can navigate using a list of directions (turn left, turn right)
+
+```haskell
+data BTree a = BEmpty | BNode a (BTree a) (BTree a)
+
+-- | We can take a turn to left of right
+data Direction = L | R
+-- | Directions is just a list of turns we took
+type Directions = [Direction]
+
+-- | A crumb remembers the node value, the turn we take and the subtree not visited
+data Crumb a = LeftCrumb a (BTree a) | RightCrumb a (BTree a)
+-- | Breadcrumbs is just a collection of crumbs
+type Breadcrumbs a = [Crumb a]
+
+-- | Given a node and a accumulated list of crumbs, 
+-- we take left returning the left subtree and append a new crumb (value and right subtree)
+goLeft :: (BTree a, Breadcrumbs a) -> (BTree a, Breadcrumbs a)
+goLeft (BNode n l r, bs) = (l, LeftCrumb n r:bs)
+
+-- | Given a node and an aaccumulated list of crumbs, 
+-- we take right returning the right subtree and append a new crumb (value and lft subtree)
+goRight :: (BTree a, Breadcrumbs a) -> (BTree a, Breadcrumbs a)
+goRight (BNode n l r, bs) = (r, RightCrumb n l:bs)
+
+-- | Allows us to navigate up in the tree.
+goUp :: (BTree a, Breadcrumbs a) -> (BTree a, Breadcrumbs a)
+goUp (t, LeftCrumb n r : bs) = (BNode n t r, bs)
+goUp (t, RightCrumb n l : bs) = (BNode n l t, bs)
+
+-- | The zipper is the pair made of the sub-tree (left or right) and
+-- the collection of the crumbs to subtree's parent node. The last crumb
+-- points to the parent node and the other sub-tree.
+type Zipper a = (BTree a, Breadcrumbs a)
+```
 
 
 ## About this Code
