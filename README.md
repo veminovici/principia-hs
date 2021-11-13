@@ -1,6 +1,16 @@
 !["Haskell](./assets/images/haskell.png "Haskell") 
 # Simplee::Principia::Haskell
 
+## Content
+- [Build & Run](https://github.com/veminovici/principia-hs#build--run)
+- [State Monad](https://github.com/veminovici/principia-hs#)
+- [Reader Monad](https://github.com/veminovici/principia-hs#-1)
+- [Writer Monad](https://github.com/veminovici/principia-hs#-2)
+- [MoaybeT Transformer](https://github.com/veminovici/principia-hs#-3)
+- [Lenses, Prisms, Isomorphism, Epimorphism](https://github.com/veminovici/principia-hs#-4)
+
+<br/>
+
 ## Build & Run
 ```
 stack build
@@ -171,6 +181,9 @@ data Lens a b = Lens (a -> b) (b -> a -> a)
 data Isomorphism a b = Iso (a -> b) (b -> a)
 data Epimorphism a b = Epi (a -> Maybe b) (b -> a)
 ```
+
+## ![Zippers](./assets/images/zippers.png "Zippers")
+
 
 ## About this Code
 
