@@ -1,13 +1,14 @@
 !["Haskell](./assets/images/haskell.png "Haskell") 
 # Simplee::Principia::Haskell
 
-## Content
+## Contents
 - [Build & Run](https://github.com/veminovici/principia-hs#build--run)
 - [State Monad](https://github.com/veminovici/principia-hs#)
 - [Reader Monad](https://github.com/veminovici/principia-hs#-1)
 - [Writer Monad](https://github.com/veminovici/principia-hs#-2)
-- [MoaybeT Transformer](https://github.com/veminovici/principia-hs#-3)
+- [MaybeT Transformer](https://github.com/veminovici/principia-hs#-3)
 - [Lenses, Prisms, Isomorphism, Epimorphism](https://github.com/veminovici/principia-hs#-4)
+- [Zippers](https://github.com/veminovici/principia-hs#-5)
 
 <br/>
 
@@ -177,12 +178,23 @@ main = do
 It is inspired by this [blog](https://xyncro.tech/aether/guides/lenses.html).
 
 ```haskell
+-- | Lens is a pair of getter and setter. The a is the container and b is its property.
 data Lens a b = Lens (a -> b) (b -> a -> a)
+
+-- | Prism is a pair of getter and setter, where the property is optional
+data Prism a b = Prism (a -> Maybe b) (b -> a -> a)
+
+-- | Isomorphism is a pair of conversion functions for two types.
+-- The conversion in both ways is always available (eg String <-> [Char])
 data Isomorphism a b = Iso (a -> b) (b -> a)
+
+-- | Epimorphism is a pair of coversion functions for two types.
+-- The conversion may not work all the type (eg String <-> Int)
 data Epimorphism a b = Epi (a -> Maybe b) (b -> a)
 ```
 
 ## ![Zippers](./assets/images/zippers.png "Zippers")
+[Zippers](https://github.com/veminovici/principia-hs/blob/master/src/Zippers.hs) are a mechanism to navigate in a tree/list and focus on a specific node/item.
 
 
 ## About this Code

@@ -30,6 +30,7 @@ library
       Reader
       State
       Writer
+      Zippers
   other-modules:
       Paths_principia_hs
   hs-source-dirs:

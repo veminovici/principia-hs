@@ -31,6 +31,7 @@ library:
     - Reader
     - State
     - Writer
+    - Zippers
 
 executables:
   principia-hs-exe:
