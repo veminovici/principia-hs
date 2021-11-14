@@ -9,6 +9,7 @@
 - [MaybeT Transformer](https://github.com/veminovici/principia-hs#-3)
 - [Lenses, Prisms, Isomorphism, Epimorphism](https://github.com/veminovici/principia-hs#-4)
 - [Zippers](https://github.com/veminovici/principia-hs#-5)
+- [Units](https://github.com/veminovici/principia-hs#Units)
 
 <br/>
 
@@ -237,6 +238,81 @@ type Zipper a = (BTree a, Breadcrumbs a)
 type ListZipper a = ([a], [a])
 ```
 
+## Units
+The units can be defined as simpe data while any base quentity is built out of *Double* with an attached *phantom type*.
+The dimensionless quantities (eg. Pi) will use *()* as a phantom type.
+
+```haskell
+data Meter
+data Kilogram
+data Second
+
+newtype BaseQuantity a = BaseQuantity Double
+
+type Distance = BaseQuantity Meter
+type Mass = BaseQuantity Kilogram
+type Time = BaseQuantity Second
+type Dimensionless = BaseQuantity ()
+```
+
+The units which are quotient (a/b) of two units a and b, will be represented as b -> a.
+
+```haskell
+type Quotient a b = b -> a
+type Inverse a = Quotient Dimensionless a
+type Product a b = Quotient a (Inverse b)
+type Square = Product a a
+
+type Velocity = Quotient Lenght Time
+type Area = Product Length
+```
+
+The quentities are a type-class which can be constructed out of a double:
+
+```haskell
+class Quantity a where
+    construct :: Double -> a
+    destruct  :: a -> Double
+
+-- | Add two quantities of the same unit
+(.+.) :: Quantity a => a -> a -> a ...
+-- | Subtract two quantities of the same unit
+(.-.) :: Quantity a => a -> a -> a ...
+-- | Multiple two quentities
+(.*.) :: (Quantity a, Quantity b) => a -> b -> Product a b ...
+-- | Divide any two quentities
+(./.) :: (Quantity a, Quantity b) => a -> b -> Quotient a b
+
+instance Quantity (BaseQuantity a) where
+    construct = BaseQuantity
+    destruct (BaseQuantity x) = x
+
+instance (Quantity q, Quantity r) => Quantity (q -> r) where
+    construct x = \y -> construct (x * (destruct y))
+    destruct x = destruct (x (construct 1))
+```
+
+And here is an example:
+
+```haskell
+tableWidth :: Length
+tableWidth = construct 1.5
+
+tableHeight :: Length
+tableHeight = construct 2.5
+
+tableArea :: Area
+tableArea = tableWidth .*. tableHeight
+
+tableMass :: Mass
+tableMass = construct 150
+
+tableArea' :: Area
+tableArea' = tableWidth .*. tableMass
+-- Error: Couldn't match type ‘Kilogram’ with ‘Meter’
+-- Expected type: Area
+-- Actual type: Product Length Mass
+```
 
 ## About this Code
 

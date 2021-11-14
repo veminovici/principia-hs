@@ -30,6 +30,7 @@ library:
     - MaybeT
     - Reader
     - State
+    - Units
     - Writer
     - Zippers
 
