@@ -31,6 +31,7 @@ library:
     - Reader
     - State
     - Units
+    - UntypedArithmetic
     - Writer
     - Zippers
 

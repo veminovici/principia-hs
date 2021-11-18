@@ -30,6 +30,7 @@ library
       Reader
       State
       Units
+      UntypedArithmetic
       Writer
       Zippers
   other-modules:
