@@ -35,3 +35,19 @@
 
 **Fixed-point combinator** = used to define recursive functions
 
+**Set of terms** = If *V* is the set of variable names, the *set of terms* is the smallest set *T* such that:
+- x in T for every x in V
+- if t1 in T and x in V then λx.t is in T
+- if t1 and t2 in T then t1 t2 in T
+
+**Free variables** = the set of free variables of a term FV(t) is defined:
+- FV(x) = [x]
+- FV(λx.t) = FV(t) \ [x]
+- FV(t1 t2) = F(t1) U F(t2)
+
+**Substitution**
+
+![Untyped Lambda calculus](../../assets/images/untyped_lambda_calculus.png "Untyped Lambda calculus")
+
+Values can be arbitraty lambda-terms.
+*E_APPABS* is the *computation* rule, and *E-APP1* and *E-APP2* are the *congruence* rule.
