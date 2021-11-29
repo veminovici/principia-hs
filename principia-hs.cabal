@@ -35,6 +35,7 @@ library
       Writer
       Zippers
   other-modules:
+      Expr
       LambdaCalculus
       Paths_principia_hs
   hs-source-dirs:
