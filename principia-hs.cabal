@@ -27,6 +27,7 @@ library
   exposed-modules:
       Isomorphism
       MaybeT
+      Parser
       Reader
       State
       Units
