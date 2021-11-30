@@ -37,6 +37,7 @@ library
   other-modules:
       Expr
       LambdaCalculus
+      MonadT
       Paths_principia_hs
   hs-source-dirs:
       src
