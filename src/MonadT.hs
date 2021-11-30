@@ -134,3 +134,5 @@ runComputation' :: IO ()
 runComputation' = putStrLn $ show $ runState compWithEnv (MkCounter 0)
   where compWithEnv = runReaderT compWithLogs 15
         compWithLogs = runWriterT mComputation'
+
+-- runState ( runReaderT ( runWriterT mComputation' ) 15 )  (MkCounter 0)
