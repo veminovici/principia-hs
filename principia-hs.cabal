@@ -38,6 +38,7 @@ library
       Expr
       LambdaCalculus
       MonadT
+      ReaderT_WriterT
       Paths_principia_hs
   hs-source-dirs:
       src
